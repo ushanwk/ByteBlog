@@ -1,7 +1,7 @@
 import car from "../../assets/images/car.jpeg";
 import React from "react";
 
-export const Post = () => {
+export default  function Post() {
     return (
         <div
             className="my-8 px-8 py-8 flex mx-auto justify-center items-center gap-6 max-lg:flex-wrap max-lg:w-[600px] max-sm:w-[500px] border-2 border-gray-500">
