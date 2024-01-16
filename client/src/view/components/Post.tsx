@@ -4,7 +4,7 @@ import React from "react";
 export default  function Post() {
     return (
         <div
-            className="my-8 px-8 py-8 flex mx-auto justify-center items-center gap-6 max-lg:flex-wrap max-lg:w-[600px] max-sm:w-[500px] border-2 border-gray-100">
+            className="my-8 px-8 py-8 flex mx-auto justify-center items-center gap-6 max-lg:flex-wrap max-lg:w-[600px] max-sm:w-[500px] border-2 border-gray-100 rounded-xl">
             <img src={car} className="w-[400px] max-lg:w-[500px]"/>
             <div>
                 <h2 className="text-2xl font-bold font-sans">Unveiling the Future: Exploring the Latest Electric
