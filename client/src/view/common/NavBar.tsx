@@ -5,7 +5,7 @@ export const NavBar = () => {
     return (
         <header className="shadow-xl">
             <div className="max-w-6xl h-16 mx-auto flex items-center justify-between px-10">
-                <h1 className="font-sans font-bold text-2xl">ByteBlog.</h1>
+                <Link to="/" className="font-sans font-bold text-2xl">ByteBlog.</Link>
                 <nav className="flex gap-5">
                     <Link to="/login">Login</Link>
                     <Link to="/register">Register</Link>
