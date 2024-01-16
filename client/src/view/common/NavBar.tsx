@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 export const NavBar = () => {
     return (
@@ -6,8 +7,8 @@ export const NavBar = () => {
             <div className="max-w-6xl h-16 mx-auto flex items-center justify-between px-10">
                 <h1 className="font-sans font-bold text-2xl">ByteBlog.</h1>
                 <nav className="flex gap-5">
-                    <a href="">Login</a>
-                    <a href="">Register</a>
+                    <Link to="/login">Login</Link>
+                    <Link to="/register">Register</Link>
                 </nav>
             </div>
         </header>

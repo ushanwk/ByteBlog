@@ -12,10 +12,20 @@ function App() {
                   <NavBar/>
                   <section className="max-w-5xl my-12 flex-col items-center justify-center mx-auto">
                       <Post/>
+                      <Post/>
+                      <Post/>
                   </section>
               </main>
           }/>
 
+          <Route path={'/login'} element={
+              <main className="w-full">
+                  <NavBar/>
+                  <section className="max-w-5xl my-12 flex-col items-center justify-center mx-auto">
+                      <div>Login Page</div>
+                  </section>
+              </main>
+          }/>
       </Routes>
   );
 }
