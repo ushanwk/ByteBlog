@@ -6,8 +6,11 @@ const User = require('./models/User');
 const bcrypt = require('bcrypt');
 
 const salt = bcrypt.genSaltSync(10);
+const secret = 'abcdefg'
 
-app.use(cors());
+const jwt = require('jsonwebtoken');
+
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(express.json());
 
 mongoose.connect('mongodb+srv://ushanwk22:Ukwk22711@cluster0.x8nkhgc.mongodb.net/?retryWrites=true&w=majority');
@@ -29,7 +32,10 @@ app.post('/login', async (req, res) => {
     const passOk = bcrypt.compareSync(password, userDoc.password);
 
     if(passOk){
-        res
+        jwt.sign({username, id: userDoc._id}, secret, {}, (er, token) => {
+           if(er) throw er;
+           res.cookie('token', token).json('ok');
+        });
     }else{
         res.status(400).json('Wrong credentials. Please try again.');
     }

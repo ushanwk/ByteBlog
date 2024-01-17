@@ -1,17 +1,33 @@
 import {useState} from "react";
+import {Navigate} from "react-router-dom";
+import {HomePage} from "./HomePage";
 
 export const LoginPage = () => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    function login(ev: any){
+    const [redirect, setRedirect] = useState(false);
+
+    async function login(ev: any){
         ev.preventDefault();
-        fetch('http://localhost:4000/login', {
+
+        const response = await fetch('http://localhost:4000/login', {
             method: 'POST',
             body: JSON.stringify({username, password}),
             headers: {'Content-Type':'application/json'},
-        })
+            credentials: 'include',
+        });
+
+        if(response.ok){
+            setRedirect(true);
+        }else{
+            alert('Invalid credentials. Please try again.');
+        }
+    }
+
+    if(redirect) {
+        return <Navigate to={'/'}/>
     }
 
     return (
