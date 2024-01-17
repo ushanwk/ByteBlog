@@ -23,6 +23,11 @@ app.post('/register', async (req, res) => {
     }
 })
 
+app.post('/login', (req, res) => {
+    const {username, password} = req.body;
+
+})
+
 const server = app.listen(4000, 'localhost', () => {
     console.log('Server is running on port 4000');
 });
