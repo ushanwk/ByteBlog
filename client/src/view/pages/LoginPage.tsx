@@ -1,6 +1,8 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {Navigate} from "react-router-dom";
 import {HomePage} from "./HomePage";
+import {userInfo} from "node:os";
+import {UserContext} from "../../UserContext";
 
 export const LoginPage = () => {
 
@@ -8,6 +10,9 @@ export const LoginPage = () => {
     const [password, setPassword] = useState('');
 
     const [redirect, setRedirect] = useState(false);
+
+    const context = useContext(UserContext)!
+    const { setUserInfo, userInfo } = context;
 
     async function login(ev: any){
         ev.preventDefault();
@@ -20,7 +25,10 @@ export const LoginPage = () => {
         });
 
         if(response.ok){
-            setRedirect(true);
+            response.json().then(userInfo => {
+                setUserInfo(userInfo);
+                setRedirect(true);
+            });
         }else{
             alert('Invalid credentials. Please try again.');
         }
