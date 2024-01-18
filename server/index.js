@@ -45,12 +45,16 @@ app.post('/login', async (req, res) => {
     }
 });
 
-app.get('/profile', (req, res) =>{
+app.get('/profile', (req, res) => {
     const {token} = req.cookies;
     jwt.verify(token, secret, {}, (er, info) => {
         if(er) throw er;
         res.json(info);
     });
+});
+
+app.post('/logout', (req, res) => {
+
 });
 
 const server = app.listen(4000, 'localhost', () => {

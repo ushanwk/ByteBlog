@@ -15,6 +15,13 @@ export const NavBar = () => {
         });
     }, []);
 
+    function logout(){
+        fetch('http://localhost:4000/logout', {
+            credentials: 'include',
+            method: 'POST'
+        })
+    }
+
     return (
         <header className="shadow-xl">
             <div className="max-w-6xl h-16 mx-auto flex items-center justify-between px-10">
@@ -24,7 +31,7 @@ export const NavBar = () => {
                         username && (
                             <>
                                 <Link to='/create'>New Post</Link>
-                                <a>Logout</a>
+                                <a onClick={logout}>Logout</a>
                             </>
                         )
                     }
