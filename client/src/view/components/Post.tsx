@@ -1,5 +1,6 @@
 import car from "../../assets/images/car.jpeg";
 import React from "react";
+import { format } from "date-fns";
 
 interface PostProps{
     title: string,
@@ -19,7 +20,7 @@ export default  function Post(props: PostProps) {
 
                 <div className="flex gap-5">
                     <p className="text-gray-500 font-medium py-2">@John-Abraham</p>
-                    <p className="text-gray-300 font-medium py-2">{props.createdAt}</p>
+                    <p className="text-gray-300 font-medium py-2">{format(new Date(props.createdAt), 'MMM d, yyyy | HH:mm')}</p>
                 </div>
 
                 <p className="pt-4 font-medium text-gray-600">{props.summary}</p>
