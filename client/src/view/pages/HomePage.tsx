@@ -19,7 +19,7 @@ export const HomePage = () => {
             {
                 posts.length > 0 && posts.map(post => (
                     // @ts-ignore
-                    <Post title={post.title} summary={post.summary} file={post.file} content={post.content} createdAt={post.createdAt} />
+                    <Post title={post.title} summary={post.summary} file={post.file} content={post.content} createdAt={post.createdAt} author={post.author.username} />
                 ))
             }
         </>

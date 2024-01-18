@@ -78,18 +78,24 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
 
     const {title, summary, content} = req.body;
 
-    const postDoc = await Post.create({
-        title,
-        summary,
-        content,
-        cover: newPath,
-    });
+    const {token} = req.cookies;
 
-    res.json(postDoc);
+    jwt.verify(token, secret, {}, async (er, info) => {
+        if(er) throw er;
+
+        const postDoc = await Post.create({
+            title,
+            summary,
+            content,
+            cover: newPath,
+            author: info.id,
+        });
+        res.json(postDoc);
+    });
 });
 
 app.get('/post', async (req, res) => {
-    res.json(await Post.find());
+    res.json(await Post.find().populate('author', ['username']));
 })
 
 
