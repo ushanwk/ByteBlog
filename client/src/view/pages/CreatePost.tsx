@@ -24,9 +24,29 @@ export const CreatePost = () => {
     const [title, setTitle] = useState('');
     const [summary, setSummary] = useState('');
     const [content, setContent] = useState('');
+    const [files, setFiles] = useState('');
+
+    async function createNewPost(ev: any){
+        const data = new FormData();
+        data.set('title', title);
+        data.set('summary', summary);
+        data.set('content', content);
+        data.set('file', files[0]);
+
+        ev.preventDefault();
+
+        console.log(files)
+
+        const response = await fetch('http://localhost:4000/post', {
+            method: 'POST',
+            body: data,
+        });
+
+        await response.json();
+    }
 
     return (
-        <form className="max-w-[700px] flex flex-col mx-auto items-center gap-5 mt-24 max-md:mx-10">
+        <form className="max-w-[700px] flex flex-col mx-auto items-center gap-5 mt-24 max-md:mx-10" onSubmit={createNewPost}>
             <h1 className="text-center text-4xl font-bold font-sans mb-8">Create a Post</h1>
 
             <input
@@ -45,6 +65,10 @@ export const CreatePost = () => {
 
             <input
                 type="file"
+                onChange={e => {
+                    // @ts-ignore
+                    setFiles(e.target.files)}
+                }
                 className="p-3 border-2 border-gray-300 bg-gray-100 rounded-xl m-2 w-full"
             />
 

@@ -12,6 +12,11 @@ const jwt = require('jsonwebtoken');
 
 const cookieParser = require('cookie-parser');
 
+const multer = require('multer'); //save image files in folders
+const uploadMiddleware = multer({ dest: 'uploads/' });
+
+const fs = require('fs');
+
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(express.json());
 
@@ -59,6 +64,18 @@ app.get('/profile', (req, res) => {
 app.post('/logout', (req, res) => {
     res.cookie('token', '').json('ok');
 });
+
+app.post('/post', uploadMiddleware.single('file'), (req, res) => {
+    const {originalname, path} = req.file;
+    const parts = originalname.split('.');
+    const ext = parts[parts.length-1];
+
+    fs.renameSync(path, path + '.' + ext);
+
+    res.json({ext});
+});
+
+
 
 const server = app.listen(4000, 'localhost', () => {
     console.log('Server is running on port 4000');
