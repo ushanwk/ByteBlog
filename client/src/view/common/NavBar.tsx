@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 export const NavBar = () => {
 
-    const [username, setUsername] = useState('');
+    const [username, setUsername] = useState(null);
 
     useEffect(() => {
         fetch('http://localhost:4000/profile', {
@@ -19,7 +19,9 @@ export const NavBar = () => {
         fetch('http://localhost:4000/logout', {
             credentials: 'include',
             method: 'POST'
-        })
+        });
+
+        setUsername(null);
     }
 
     return (
