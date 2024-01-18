@@ -6,6 +6,7 @@ import {HomePage} from "./view/pages/HomePage";
 import {LoginPage} from "./view/pages/LoginPage";
 import {RegisterPage} from "./view/pages/RegisterPage";
 import {UserContextProvider} from "./UserContext";
+import {CreatePost} from "./view/pages/CreatePost";
 
 
 function App() {
@@ -28,6 +29,12 @@ function App() {
                     <Route path={'/register'} element={
                         <section className="max-w-5xl my-12 flex-col items-center justify-center mx-auto">
                             <RegisterPage/>
+                        </section>
+                    }/>
+
+                    <Route path={'/create'} element={
+                        <section className="max-w-5xl my-12 flex-col items-center justify-center mx-auto">
+                            <CreatePost/>
                         </section>
                     }/>
                 </Route>
