@@ -25,6 +25,8 @@ app.use(express.json());
 
 app.use(cookieParser());
 
+app.use('/uploads', express.static(__dirname + '/uploads'));
+
 mongoose.connect('mongodb+srv://ushanwk22:Ukwk22711@cluster0.x8nkhgc.mongodb.net/?retryWrites=true&w=majority');
 
 app.post('/register', async (req, res) => {
@@ -95,7 +97,12 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
 });
 
 app.get('/post', async (req, res) => {
-    res.json(await Post.find().populate('author', ['username']));
+    res.json(
+        await Post.find()
+            .populate('author', ['username'])
+            .sort({createdAt: -1})
+            .limit(20)
+    );
 })
 
 
