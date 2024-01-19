@@ -8,6 +8,7 @@ import {RegisterPage} from "./view/pages/RegisterPage";
 import {UserContextProvider} from "./UserContext";
 import {CreatePost} from "./view/pages/CreatePost";
 import {PostPage} from "./view/pages/PostPage";
+import {EditPost} from "./view/pages/EditPost";
 
 
 function App() {
@@ -43,6 +44,12 @@ function App() {
                     <Route path={'/post/:id'} element={
                         <section className="max-w-5xl my-12 flex-col items-center justify-center mx-auto">
                             <PostPage/>
+                        </section>
+                    }/>
+
+                    <Route path={'/edit/:id'} element={
+                        <section className="max-w-5xl my-12 flex-col items-center justify-center mx-auto">
+                            <EditPost/>
                         </section>
                     }/>
                 </Route>
