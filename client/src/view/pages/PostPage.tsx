@@ -1,13 +1,16 @@
-import {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {useContext, useEffect, useState} from "react";
+import {Link, useParams} from "react-router-dom";
 import {formatISO9075} from "date-fns";
+import {UserContext} from "../../UserContext";
 
 export const PostPage = () => {
 
     const {id} = useParams();
 
-    const [postInfo, setPostInfo] = useState(null);
+    const context = useContext(UserContext)!
+    const { setUserInfo, userInfo } = context;
 
+    const [postInfo, setPostInfo] = useState(null);
 
     useEffect(() => {
         fetch(`http://localhost:4000/post/${id}`)
@@ -29,7 +32,7 @@ export const PostPage = () => {
 
     return (
         <section
-            className="my-8 px-8 pt-2 pb-10 mx-auto gap-6 max-lg:flex-wrap max-lg:w-[600px] max-sm:w-[500px] border-2 border-gray-100 rounded-xl">
+            className="my-8 px-8 pt-2 pb-10 mx-auto gap-6 max-lg:flex-wrap max-lg:w-[600px] max-sm:w-[500px] border-2 border-gray-200 rounded-xl">
 
             <h1 className="mt-8 text-4xl font-bold text-center">
                 { // @ts-ignore
@@ -43,11 +46,27 @@ export const PostPage = () => {
                 }
             </h1>
 
-            <h1 className="text-xl font-medium text-center mb-10">
+            <h1 className="text-xl font-medium text-center mb-5">
                 by @{ // @ts-ignore
                 postInfo.author.username
             }
             </h1>
+
+            {
+                // @ts-ignore
+                userInfo?.username == postInfo.author.username && (
+                    <div className="text-center pt-3 pb-12">
+                        <Link
+                            to={`/edit/${
+                                // @ts-ignore
+                                postInfo._id
+                            }`}
+                            className="bg-black text-white px-4 py-2 rounded-xl">
+                            Edit Post
+                        </Link>
+                    </div>
+                )
+            }
 
             <img
                 // @ts-ignore

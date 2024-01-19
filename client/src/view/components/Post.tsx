@@ -16,7 +16,7 @@ interface PostProps{
 export default  function Post(props: PostProps) {
     return (
         <Link to={`/post/${props._id}`}
-            className="my-8 px-8 py-8 flex mx-auto gap-6 max-lg:flex-wrap max-lg:w-[600px] max-sm:w-[500px] border-2 border-gray-100 rounded-xl">
+            className="my-8 px-8 py-8 flex mx-auto gap-6 max-lg:flex-wrap max-lg:w-[600px] max-sm:w-[500px] border-2 border-gray-200 rounded-xl">
 
             <img src={'http://localhost:4000/' + props.cover} className="w-[400px] max-lg:w-[500px] rounded-xl"/>
 
