@@ -17,8 +17,8 @@ export const NavBar = () => {
         });
     }, []);
 
-    function logout(){
-        fetch('http://localhost:4000/logout', {
+    async function logout(){
+        await fetch('http://localhost:4000/logout', {
             credentials: 'include',
             method: 'POST'
         });
@@ -32,6 +32,13 @@ export const NavBar = () => {
         <header className="shadow-xl">
             <div className="max-w-6xl h-16 mx-auto flex items-center justify-between px-10">
                 <Link to="/" className="font-sans font-bold text-2xl">ByteBlog.</Link>
+
+                {
+                    username && (
+                        <h3>Welcome {username}</h3>
+                    )
+                }
+
                 <nav className="flex gap-5">
                     {
                         username && (
