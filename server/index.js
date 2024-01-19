@@ -103,6 +103,12 @@ app.get('/post', async (req, res) => {
             .sort({createdAt: -1})
             .limit(20)
     );
+});
+
+app.get('/post/:id', async (req, res) => {
+    const {id} = req.params;
+    const postDoc = await Post.findById(id).populate('author', ['username']);
+    res.json(postDoc);
 })
 
 
